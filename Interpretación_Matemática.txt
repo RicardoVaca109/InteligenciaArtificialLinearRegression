@@ -1,0 +1,48 @@
+Con el dataset encontrado en Kaggle me di cuenta de que para tener un mejor modelo era
+mejor calcular primero la correlación de las variables. Lo realizo con el script
+calcular_correlacion.py.
+
+*La correlación de 0.86 indica una relación positiva fuerte entre los pasos recorridos
+y las calorías quemadas.
+
+*Esto significa que a mayor número de pasos, más calorías se queman, aunque no de forma
+al 100 %.
+
+Continuando, ejecutamos el script regresion_linear_simple_rv.py tomando en cuenta las dos
+variables que elegimos y realizamos el siguiente análisis por medio de los gráficos.
+
+Gráfico de Entrenamiento (Naranja + línea azul):
+    -Los puntos naranjas siguen una línea recta ascendente, lo cual es esperado en una relación lineal.
+    -La línea azul es la recta de predicción generada por el modelo.
+    -Hay varios outliers (puntos bajos en calorías aunque con muchos pasos), lo que afecta la precisión 
+    del modelo.
+
+Gráfico de Prueba (Rojo + línea azul):
+    -El comportamiento es similar al conjunto de entrenamiento.
+    -Los puntos rojos en su mayoría siguen la tendencia de la línea azul, pero algunos valores
+    están muy por debajo, lo que muestra que hay datos atípicos también en el conjunto de
+    prueba.
+
+El modelo sigue la siguiente ecuación:
+
+y = mx + b
+
+Donde:
+y = calorías quemadas
+x = pasos recorridos
+m = pendiente (calorías adicionales por paso)
+b = intersección (calorías quemadas sin pasos, generalmente pequeñas)
+
+Para obtener los valores de m y de b de la ecuación usamos las siguientes líneas de código:
+print("Pendiente (m):", regressor.coef_)
+print("Intersección (b):", regressor.intercept_)
+Dando el siguiente resultado:
+Pendiente (m): [2.80908062]
+Intersección (b): -588.1941114029723
+
+En conclusión:
+Ideal si se busca una predicción rápida y general de calorías en función de pasos.
+Hay outliers que distorsionan un poco el ajuste del modelo.
+Con limpieza del dataset, el modelo sería aún más preciso.
+Los outliers (por ejemplo, pocos pasos pero muchas calorías, o muchos pasos pero pocas calorías) no ayudan al modelo
+Por último mientras más crece la variable X(Pasos Recorridos) mayor es la Y(Quema de Calorías)
